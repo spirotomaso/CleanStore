@@ -5,6 +5,7 @@ jobs:
       xcode: "10.1.0"
     steps:
       - checkout
+      - run: sysctl -n machdep.cpu.brand_string
       - run: brew install hyperfine
       - run:
           name: Build and run tests
