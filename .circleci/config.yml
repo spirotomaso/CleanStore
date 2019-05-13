@@ -5,8 +5,8 @@ jobs:
       xcode: "10.1.0"
     steps:
       - checkout
-      - run: sysctl -n machdep.cpu.brand_string
-      - run: brew install hyperfine
+#       - run: sysctl -n machdep.cpu.brand_string
+#       - run: brew install hyperfine
       - run:
           name: Build and run tests
-          command: hyperfine 'xcodebuild clean test -project CleanStore.xcodeproj -scheme CleanStore -destination "platform=iOS Simulator,OS=12.1,name=iPhone XR" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO'
+          command: xcodebuild clean test -project CleanStore.xcodeproj -scheme CleanStore -destination "platform=iOS Simulator,OS=12.1,name=iPhone XR" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
