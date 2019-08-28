@@ -4,5 +4,4 @@ xcode_project: CleanStore.xcodeproj
 xcode_scheme: CleanStore
 xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone 8
 script:
-  - brew install hyperfine
-  - hyperfine 'xcodebuild clean test -project CleanStore.xcodeproj -scheme CleanStore -destination "platform=iOS Simulator,OS=12.2,name=iPhone 8" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet'
+  - xcodebuild clean test -project CleanStore.xcodeproj -scheme CleanStore -destination "platform=iOS Simulator,OS=12.2,name=iPhone 8" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
