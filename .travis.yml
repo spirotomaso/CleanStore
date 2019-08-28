@@ -6,8 +6,8 @@ xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone 8
 script:
   - brew install sysbench
   - brew install bc
-  - sysbench cpu --num-threads=$(nproc) --cpu-max-prime=5000 --events=100000 --time=0 run
+  - sysbench cpu --num-threads=4 --cpu-max-prime=5000 --events=100000 --time=0 run
   - sysbench --test=fileio --file-total-size=10G prepare
-  - sysbench fileio --num-threads=$(nproc) --file-total-size=10G --file-test-mode=rndrw --time=20 --max-requests=0 run
+  - sysbench fileio --num-threads=4 --file-total-size=10G --file-test-mode=rndrw --time=20 --max-requests=0 run
   - sysbench --test=fileio --file-total-size=10G cleanup
-  - sysbench memory --num-threads=$(nproc) --memory-total-size=10G run
+  - sysbench memory --num-threads=4 --memory-total-size=10G run
