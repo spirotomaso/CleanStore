@@ -4,4 +4,10 @@ xcode_project: CleanStore.xcodeproj
 xcode_scheme: CleanStore
 xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone 8
 script:
-  - xcodebuild clean test -project CleanStore.xcodeproj -scheme CleanStore -destination "platform=iOS Simulator,OS=12.2,name=iPhone 8" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
+  - brew install sysbench
+  - brew install bc
+  - sysbench cpu --num-threads=$(nproc) --cpu-max-prime=5000 --events=100000 --time=0 run
+  - sysbench --test=fileio --file-total-size=10G prepare
+  - sysbench fileio --num-threads=$(nproc) --file-total-size=10G --file-test-mode=rndrw --time=20 --max-requests=0 run
+  - sysbench --test=fileio --file-total-size=10G cleanup
+  - sysbench memory --num-threads=$(nproc) --memory-total-size=10G run
